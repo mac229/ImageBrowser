@@ -1,6 +1,8 @@
 package com.maciejkozlowski.imagebrowser.base.di
 
 import com.maciejkozlowski.imagebrowser.api.Communication
+import com.maciejkozlowski.imagebrowser.base.rx.DefaultSchedulersProvider
+import com.maciejkozlowski.imagebrowser.base.rx.SchedulersProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -16,4 +18,9 @@ object ApiModule {
     @Singleton
     @Provides
     fun provideApiService() = Communication().apiService
+
+    @JvmStatic
+    @Singleton
+    @Provides
+    fun provideSchedulersProvider(): SchedulersProvider = DefaultSchedulersProvider()
 }

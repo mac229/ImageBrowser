@@ -6,9 +6,8 @@ import com.maciejkozlowski.apihandler.response.ApiResponse
 import com.maciejkozlowski.imagebrowser.api.ApiService
 import com.maciejkozlowski.imagebrowser.api.errors.ApiErrorMapper
 import com.maciejkozlowski.imagebrowser.api.model.Image
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.maciejkozlowski.imagebrowser.base.rx.SchedulersProvider
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
@@ -18,7 +17,8 @@ import javax.inject.Inject
 class MainRepository @Inject constructor(
     private val apiService: ApiService,
     private val apiErrorMapper: ApiErrorMapper,
-    private val imageUrlConverter: ImageUrlConverter
+    private val imageUrlConverter: ImageUrlConverter,
+    private val schedulersProvider: SchedulersProvider
 ) {
 
     fun fetchList(imageWidth: Int, handleResult: (ApiResponse<List<Image>>) -> Unit): Disposable {
@@ -27,8 +27,8 @@ class MainRepository @Inject constructor(
             .map { convertList(it, imageWidth) }
             .mapToSuccessApiResponse()
             .onErrorReturnApiResponse { apiErrorMapper.mapToApiResponse(it) }
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
+            .observeOn(schedulersProvider.getObserverScheduler())
+            .subscribeOn(schedulersProvider.getSubscriberScheduler())
             .subscribe(handleResult)
     }
 
