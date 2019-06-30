@@ -1,7 +1,8 @@
-package com.maciejkozlowski.imagebrowser
+package com.maciejkozlowski.imagebrowser.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.maciejkozlowski.imagebrowser.R
 
 class MainActivity : AppCompatActivity() {
 
