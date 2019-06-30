@@ -2,6 +2,7 @@ package com.maciejkozlowski.imagebrowser.app.main
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.recyclerview.widget.GridLayoutManager
 import com.maciejkozlowski.imagebrowser.R
 import com.maciejkozlowski.imagebrowser.api.model.Image
@@ -34,18 +35,18 @@ class MainActivity : BaseActivity() {
 
     private fun onViewStateChanged(viewState: MainViewState) {
         when (viewState) {
-            is MainViewState.Content -> onDataFetched(viewState.list)
-            MainViewState.Loading -> showToast("loading")
-            MainViewState.Error -> showToast("error")
+            is MainViewState.Content   -> onDataFetched(viewState.list)
+            MainViewState.Loading      -> return
+            MainViewState.NoInternet   -> showToast(R.string.no_internet)
+            MainViewState.UnknownError -> showToast(R.string.something_went_wrong)
         }
     }
 
-    private fun showToast(text: String) {
+    private fun showToast(@StringRes text: Int) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
     }
 
     private fun onDataFetched(list: List<Image>) {
-        showToast("onDataFetched\n" + list.first())
         recyclerView.layoutManager = GridLayoutManager(this, SPAN_COUNT)
         recyclerView.adapter = ImageListAdapter(list, AdapterListener())
     }

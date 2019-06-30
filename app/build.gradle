@@ -56,6 +56,8 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+    // Api calls handler
+    implementation 'com.github.mac229:apicallshandler:1.0.5'
 
     // Tests
     testImplementation 'junit:junit:4.12'

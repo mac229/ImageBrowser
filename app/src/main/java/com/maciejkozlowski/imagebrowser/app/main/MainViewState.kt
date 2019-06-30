@@ -9,5 +9,6 @@ sealed class MainViewState {
 
     data class Content(val list: List<Image>) : MainViewState()
     object Loading : MainViewState()
-    object Error : MainViewState()
+    object NoInternet : MainViewState()
+    object UnknownError : MainViewState()
 }
