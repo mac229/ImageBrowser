@@ -1,4 +1,4 @@
-package com.maciejkozlowski.imagebrowser.main
+package com.maciejkozlowski.imagebrowser.app.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
