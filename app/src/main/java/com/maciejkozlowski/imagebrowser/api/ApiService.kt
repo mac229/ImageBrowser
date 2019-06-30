@@ -10,7 +10,7 @@ import retrofit2.http.GET
 
 interface ApiService {
 
-    @GET("/list")
+    @GET("list")
     fun getList(): Single<List<Image>>
 
 

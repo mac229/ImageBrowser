@@ -24,6 +24,7 @@ android {
 ext {
     retrofitVersion = '2.6.0'
     daggerVersion = '2.23.2'
+    moshiVersion = '1.8.0'
     mockitoVersion = '2.28.2'
 }
 
@@ -39,7 +40,8 @@ dependencies {
     // OkHttp
     implementation "com.squareup.okhttp3:logging-interceptor:4.0.0"
     // Moshi
-    implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
+    implementation "com.squareup.moshi:moshi:$moshiVersion"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
@@ -52,6 +54,8 @@ dependencies {
     // RxJava 2
     implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     // Tests
     testImplementation 'junit:junit:4.12'
